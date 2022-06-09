@@ -3,20 +3,16 @@
 Implementation of your own version of the math.h library.  
 
 ## Contents
-1. [Chapter I](#chapter-i) \
-   1.1. [Introduction](#introduction)
-2. [Chapter II](#chapter-ii) \
-   2.1. [Information](#information)
-3. [Chapter III](#chapter-iii) \
-   3.1. [Part 1](#part-1-implementing-the-mathh-library-functions)
+1. [Introduction](#introduction)
+2. [Information](#information)
+3. [Requirements](#requirements)
+4. [Build instructions](#how-to-build)
 
-## Chapter I  
 
 ## Introduction
 
 In this project you will develop your own version of the standard math.h library in the C programming language. This library implements basic mathematical operations, which are then used in various algorithms. As part of the project you will learn the basics of computational methods and solidify knowledge of structured programming.
 
-## Chapter II
 
 ## Information
 
@@ -43,9 +39,7 @@ C mathematical operations are a group of functions in the standard library of th
 | 15 | `long double tan(double x)` | computes tangent |  
 
 
-## Chapter III
-
-## Part 1. Implementing the math.h library functions
+## Requirements
 
 The functions of the math.h library must be implemented (only those directly described [above](#overview-of-some-mathh-functions)):
 
@@ -64,3 +58,19 @@ The functions of the math.h library must be implemented (only those directly des
 - You must follow the logic of the standard library (in terms of checks, working with memory and behavior in emergency situations - tests will help you with that)
 - The total verifiable accuracy is 16 significant digits
 - Verifiable accuracy of the fractional part is up to 6 decimal places.
+
+
+## How to build
+### Build static library 
+`cd src`  
+`make s21_math.a`  
+### Run unit tests
+To run tests you need to have installed Check framework for C. Instructions are **[here](https://libcheck.github.io/check/web/install.html)**.  
+`cd src`  
+`make test`  
+`./main_test`  
+### Generate coverage report  
+It is necessary to have have **gcov** and **lcov** utilities installed.  
+`cd src`  
+`make gcov_report`  
+`open coverage_info/index.html`  
