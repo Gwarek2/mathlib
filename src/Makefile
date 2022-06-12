@@ -1,16 +1,15 @@
 CC              := gcc
 FLAGS           := -Wall -Werror -Wextra -std=c11 -g #-fsanitize=address
  
+TEST_FLAGS      := -lcheck -lm -lpthread
 ifeq ($(shell uname -s),Linux)
-	TEST_FLAGS := -lcheck -lm -lpthread -lrt -lsubunit
-else
-	TEST_FLAGS := -lcheck -lm -lpthread
+	TEST_FLAGS  += -lrt -lsubunit
 endif
 
 ALL_C           := $(shell find . -name "*.c")
 
 LIB_DIR         := lib
-TESTS_DIR		:= tests
+TESTS_DIR       := tests
 COV_DIR         := coverage_info
 OBJ_DIR         := obj
 COV_BUILD_DIR   := $(COV_DIR)/build
@@ -38,9 +37,9 @@ test: $(TEST_SRCS) $(LIB_STATIC)
 gcov_report: $(TEST_SRCS) $(COV_OBJS)
 	$(CC) $(FLAGS) --coverage $^ $(TEST_FLAGS) -o $(COV_EXEC)
 	@-./$(COV_EXEC)
-	@-gcov -f -b -n $(COV_EXEC) --object-directory=$(COV_BUILD_DIR)
-	@-lcov -c -d $(COV_BUILD_DIR) --output-file $(COV_INFO)
-	@-genhtml $(COV_INFO) --output-directory $(COV_DIR) 
+	@gcov -ucn $(COV_EXEC) --object-directory=$(COV_BUILD_DIR)
+	@lcov -q -c -d $(COV_BUILD_DIR) --output-file $(COV_INFO) --exclude "tests/*"
+	@genhtml -q $(COV_INFO) --output-directory $(COV_DIR) --function-coverage --branch-coverage
 
 $(LIB_STATIC): $(LIB_OBJS)
 	@ar -rc $@ $^
