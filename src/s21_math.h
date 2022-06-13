@@ -1,9 +1,10 @@
 #ifndef S21_MATH_H
 #define S21_MATH_H
 
-#define S21_INFINITY __builtin_inf()
+#define S21_INF __builtin_inf()
 #define S21_NAN __builtin_nan("")
-#define S21_EPS 1e-6l
+#define is_inf __builtin_isinf
+#define is_nan __builtin_isnan
 
 int s21_abs(int x);
 long double s21_acos(double x);
