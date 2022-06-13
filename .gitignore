@@ -67,3 +67,6 @@ coverage_info
 *.info
 
 .*.swp
+
+# Specific MacOS files
+.DS_store
