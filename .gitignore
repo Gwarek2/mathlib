@@ -67,3 +67,4 @@ coverage_info
 *.info
 
 .*.swp
+.DS_Store
