@@ -9,7 +9,9 @@
 #include "../s21_math.h"
 
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
+#define TEST_EPS 1e-6L
 
 Suite *suite_s21_abs(void);
+Suite *suite_s21_exp(void);
 
 #endif  // TEST
