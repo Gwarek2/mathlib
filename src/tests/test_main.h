@@ -13,5 +13,6 @@
 
 Suite *suite_s21_abs(void);
 Suite *suite_s21_exp(void);
+Suite *suite_s21_log(void);
 
 #endif  // TEST
