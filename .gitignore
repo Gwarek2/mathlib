@@ -3,7 +3,7 @@
 .idea
 .vimrc
 .gdbinit
-
+.DS_Store
 # Prerequisites
 *.d
 
