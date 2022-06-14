@@ -1,12 +1,12 @@
 #include "test_main.h"
 
 START_TEST(test_pos) {
-    double x = 14.67;
+    double x = 24.67;
     ck_assert_ldouble_eq_tol(exp(x), s21_exp(x), TEST_EPS);
 } END_TEST
 
 START_TEST(test_pos_less_than_one) {
-    double x = 0.345;
+    double x = 7.345e-29;
     ck_assert_ldouble_eq_tol(exp(x), s21_exp(x), TEST_EPS);
 }
 

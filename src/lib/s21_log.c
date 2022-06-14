@@ -5,6 +5,8 @@
 #include <math.h>
 #include "../s21_math.h"
 
+#define S21_E 2.718281828
+
 long double s21_log(double x) {
     long double res = 1;
     if (is_nan(x)) {
@@ -17,11 +19,17 @@ long double s21_log(double x) {
         res = -S21_INF;
     } else {
         long double num = x;
+        long double p = 0;
         int invert = num < 1.0l;
         if (invert) num = 1.0l / num;
-        for (int i = 0; i < 512; i++) {
+        while (num > S21_E) {
+            num /= S21_E;
+            p++;
+        }
+        for (int i = 0; i < 256; i++) {
             res = res + 2 * (num - s21_exp(res)) / (num + s21_exp(res));
         }
+        res += p;
         if (invert) res = -res;
     }
     return res;

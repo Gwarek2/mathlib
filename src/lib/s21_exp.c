@@ -20,7 +20,7 @@ long double s21_exp(double x) {
         long double fact = 1;
         long double part = 1;
         long double i = 2;
-        while (fabsl(part / res) > EXP_EPS) {
+        while (fabsl(part) > EXP_EPS) {
             part = exponent / fact;
             res += part;
             exponent *= num;
