@@ -17,9 +17,12 @@ long double s21_log(double x) {
         res = -S21_INF;
     } else {
         long double num = x;
-        while (fabsl(s21_exp(res) - x) > 1e-6l) {
-            res = res + 2 * ((num - s21_exp(res)) / (num + s21_exp(res)));
+        int invert = num < 1.0l;
+        if (invert) num = 1.0l / num;
+        for (int i = 0; i < 512; i++) {
+            res = res + 2 * (num - s21_exp(res)) / (num + s21_exp(res));
         }
+        if (invert) res = -res;
     }
     return res;
 }
