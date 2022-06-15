@@ -5,8 +5,6 @@
 #include <math.h>
 #include "../s21_math.h"
 
-#define S21_E 2.718281828
-
 long double s21_log(double x) {
     long double res = 1;
     if (is_nan(x)) {
