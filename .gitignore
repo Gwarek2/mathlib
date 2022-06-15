@@ -3,6 +3,7 @@
 .idea
 .vimrc
 .gdbinit
+.gdb_history
 
 # Prerequisites
 *.d
@@ -42,8 +43,7 @@ obj
 *.i*86
 *.x86_64
 *.hex
-test_s21_math
-coverage_s21_math
+test_main
 
 # Debug files
 *.dSYM/
