@@ -6,8 +6,10 @@
 #define is_inf __builtin_isinf
 #define is_nan __builtin_isnan
 
+
 #define S21_E 2.718281828459045
 #define S21_PI 3.141592653589793
+
 
 int s21_abs(int x);
 long double s21_acos(double x);
