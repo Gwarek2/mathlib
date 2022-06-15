@@ -6,7 +6,7 @@ START_TEST(test_pos) {
 } END_TEST
 
 START_TEST(test_pos_less_than_one) {
-    double x = 7.345e-29;
+    double x = 7.345e-29;r
     ck_assert_ldouble_eq_tol(exp(x), s21_exp(x), TEST_EPS);
 }
 
