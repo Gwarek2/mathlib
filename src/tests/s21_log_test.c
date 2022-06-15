@@ -51,20 +51,20 @@ START_TEST(test_inf_neg) {
 }
 
 Suite *suite_s21_log(void) {
-   Suite *s = suite_create("s21_log");
-   TCase *tc = tcase_create("core");
+    Suite *s = suite_create("s21_log");
+    TCase *tc = tcase_create("core");
 
-   tcase_add_test(tc, test_pos);
-   tcase_add_test(tc, test_pos_1);
-   tcase_add_test(tc, test_max);
-   tcase_add_test(tc, test_min);
-   tcase_add_test(tc, test_neg);
-   tcase_add_test(tc, test_zero);
-   tcase_add_test(tc, test_nan_pos);
-   tcase_add_test(tc, test_nan_neg);
-   tcase_add_test(tc, test_inf_pos);
-   tcase_add_test(tc, test_inf_neg);
+    tcase_add_test(tc, test_pos);
+    tcase_add_test(tc, test_pos_1);
+    tcase_add_test(tc, test_max);
+    tcase_add_test(tc, test_min);
+    tcase_add_test(tc, test_neg);
+    tcase_add_test(tc, test_zero);
+    tcase_add_test(tc, test_nan_pos);
+    tcase_add_test(tc, test_nan_neg);
+    tcase_add_test(tc, test_inf_pos);
+    tcase_add_test(tc, test_inf_neg);
 
-   suite_add_tcase(s, tc);
-   return s;
+    suite_add_tcase(s, tc);
+    return s;
 }
