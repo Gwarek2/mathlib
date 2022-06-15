@@ -27,9 +27,9 @@ long double s21_pow(double base, double exp) {
         res = 0.0l;
     } else if (is_inf(base) && base > 0 && exp > 0) {
         res = S21_INF;
-    } else if (fabs(base) <= POW_EPS && !(base < 0) && exp < 0) {
+    } else if (fabs(base) <= POW_EPS && base >= 0 && exp < 0) {
         res = S21_INF;
-    } else if (fabs(base) <= POW_EPS && !(base < 0)) {
+    } else if (fabs(base) <= POW_EPS && base >= 0) {
         res = 0.0l;
     } else if (base < 0 && fabs(base) - 1 <= POW_EPS && is_inf(exp)) {
         res = 1.0l;
