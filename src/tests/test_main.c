@@ -7,6 +7,7 @@ int main(void) {
         suite_s21_exp(),
         suite_s21_log(),
         suite_s21_pow(),
+        suite_s21_sin(),
     };
 
     SRunner *sr = srunner_create(test_suites[0]);
