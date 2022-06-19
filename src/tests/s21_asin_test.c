@@ -1,0 +1,59 @@
+#include "test_main.h"
+
+START_TEST(test_asin_positive) {
+    double x = 0.4;
+    ck_assert_ldouble_eq_tol(asin(x), s21_asin(x), TEST_EPS);
+}
+
+START_TEST(test_asin_negative) {
+    double x = -0.4;
+    ck_assert_ldouble_eq_tol(asin(x), s21_asin(x), TEST_EPS);
+}
+
+START_TEST(test_asin_zero) {
+    double x = 0;
+    ck_assert_ldouble_eq_tol(asin(x), s21_asin(x), TEST_EPS);
+}
+
+START_TEST(test_asin_one) {
+    double x = 1;
+    ck_assert_ldouble_eq_tol(asin(x), s21_asin(x), TEST_EPS);
+}
+
+START_TEST(test_asin_one_negative) {
+    double x = -1;
+    ck_assert_ldouble_eq_tol(asin(x), s21_asin(x), TEST_EPS);
+}
+
+START_TEST(test_asin_huge_positive) {
+    double x = 5;
+    ck_assert_ldouble_nan(s21_asin(x));
+}
+
+START_TEST(test_asin_huge_negative) {
+    double x = -5;
+    ck_assert_ldouble_nan(s21_asin(x));
+}
+
+START_TEST(test_asin_big_mantissa) {
+    double x = 0.123456789012345678901234567890;
+    ck_assert_ldouble_eq_tol(asin(x), s21_asin(x), TEST_EPS);
+}
+
+Suite *suite_s21_asin(void) {
+    Suite *s = suite_create("s21_asin");
+    TCase *tc = tcase_create("core");
+
+    tcase_add_test(tc, test_asin_positive);
+    tcase_add_test(tc, test_asin_negative);
+    tcase_add_test(tc, test_asin_zero);
+    tcase_add_test(tc, test_asin_one);
+    tcase_add_test(tc, test_asin_negative);
+    tcase_add_test(tc, test_asin_one_negative);
+    tcase_add_test(tc, test_asin_huge_positive);
+    tcase_add_test(tc, test_asin_huge_negative);
+    tcase_add_test(tc, test_asin_big_mantissa);
+
+    suite_add_tcase(s, tc);
+    return s;
+}
