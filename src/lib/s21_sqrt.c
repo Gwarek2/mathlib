@@ -1,6 +1,5 @@
 /**
  * Implementation of sqrt function from math library.
- * Uses Newton-Raphson method for calculation and approximation.
 **/
 #include "../s21_math.h"
 #include <math.h>
@@ -17,9 +16,7 @@ long double s21_sqrt(double x) {
         res = x;
     } else {
         long double num = x;
-        while (fabsl(res * res - num) > SQRT_EPS) {
-            res = res - (res * res - num) / (2 * res);
-        }
+        res = s21_exp(s21_log(num) / 2);
     }
     return res;
 }
