@@ -10,6 +10,6 @@
 
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
 
-Suite *suite_s21_abs(void);
+Suite *suite_s21_fabs(void);
 
 #endif  // TEST

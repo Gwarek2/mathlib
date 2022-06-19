@@ -3,7 +3,7 @@
 
 int main(void) {
     Suite* test_suites[] = {
-        suite_s21_abs()
+        suite_s21_fabs()
     };
 
     SRunner *sr = srunner_create(test_suites[0]);
