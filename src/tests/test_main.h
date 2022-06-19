@@ -18,5 +18,6 @@ Suite *suite_s21_exp(void);
 Suite *suite_s21_log(void);
 Suite *suite_s21_pow(void);
 Suite *suite_s21_sqrt(void);
+Suite *suite_s21_asin(void);
 
 #endif  // TEST
