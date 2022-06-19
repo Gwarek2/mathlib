@@ -31,7 +31,7 @@ START_TEST(test_pos_real_2) {
 } END_TEST
 
 START_TEST(test_pos_real_3) {
-    double x =4.163435e-34;
+    double x = 4.163435e-34;
     ck_assert_ldouble_eq_tol(sqrt(x), s21_sqrt(x), TEST_EPS);
 } END_TEST
 
