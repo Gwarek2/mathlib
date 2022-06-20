@@ -38,7 +38,7 @@ START_TEST(test_nan) { ck_assert_ldouble_nan(s21_ceil(S21_NAN)); }
 END_TEST
 
 START_TEST(test_tolerance) {
-    int a = 0.1;
+    float a = 0.1;
     for (int i = 0; i < 520; i++) {
         ck_assert_ldouble_eq_tol(ceil(a * i), s21_ceil(a * i), TEST_EPS);
         ck_assert_ldouble_eq_tol(ceil(-a * i), s21_ceil(-a * i), TEST_EPS);
