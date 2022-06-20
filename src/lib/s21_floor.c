@@ -1,7 +1,7 @@
 #include <string.h>
 #include "../s21_math.h"
 
-long double s21_ceil(double f) {
+long double s21_floor(double f) {
     int flag = 0;
     unsigned long input;
     memcpy(&input, &f, 8);
@@ -18,10 +18,10 @@ long double s21_ceil(double f) {
 
     if (flag == 0) {
         memcpy(&f, &output, 8);
-        if (f > 0 && output != input)
-            ++f;
+        if (f < 0 && output != input)
+            --f;
     } else if (flag == 1) {
-        f = f > 0;
+        f = f < 0 ? -1 : 0;
     }
     return f;
 }
