@@ -66,7 +66,10 @@ coverage_info
 *.gcda
 *.info
 
-..swp
+.*.swp
 
 # Specific MacOS files
 .DS_store
+
+# Auto-format file 
+.clang-format
