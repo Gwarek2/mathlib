@@ -1,24 +1,25 @@
+#include "../s21_math.h"
 long double s21_ceil(double f) {
+    int flag = 0;
     unsigned long input;
     memcpy(&input, &f, 8);
-    int exponent = ((input >> 53) & 255) - 1023;
+    long exponent = ((input >> 52) & 0x7ff) - 1023;
     if (exponent < 0)
-        return (f > 0);
-    // small numbers get rounded to 0 or 1, depending on their sign
+        flag = 1;
 
-    int fractional_bits = 53 - exponent;
+    long fractional_bits = 52 - exponent;
     if (fractional_bits <= 0)
-        return f;
-    // numbers without fractional bits are mapped to themselves
+        flag = 2;
 
-    unsigned long integral_mask = 0xffffffff << fractional_bits;
+    unsigned long integral_mask = 0xffffffffffffffff << fractional_bits;
     unsigned long output = input & integral_mask;
-    // round the number down by masking out the fractional bits
 
-    memcpy(&f, &output, 8);
-    if (f > 0 && output != input)
-        ++f;
-    // positive numbers need to be rounded up, not down
-
+    if (flag == 0) {
+        memcpy(&f, &output, 8);
+        if (f > 0 && output != input)
+            ++f;
+    } else if (flag == 1) {
+        f = f > 0;
+    }
     return f;
 }

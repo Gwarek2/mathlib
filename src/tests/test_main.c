@@ -1,10 +1,9 @@
 #include "test_main.h"
 
 int main(void) {
-    Suite *test_suites[] = {
-        suite_s21_abs(), suite_s21_exp(),  suite_s21_log(),
-        suite_s21_pow(), suite_s21_sqrt(), suite_s21_asin(),
-    };
+    Suite *test_suites[] = {suite_s21_abs(), suite_s21_exp(),  suite_s21_log(),
+                            suite_s21_pow(), suite_s21_sqrt(), suite_s21_asin(),
+                            suite_s21_ceil()};
 
     SRunner *sr = srunner_create(test_suites[0]);
     srunner_set_fork_status(sr, CK_NOFORK);
