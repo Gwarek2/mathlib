@@ -70,3 +70,7 @@ coverage_info
 
 # Specific MacOS files
 .DS_store
+
+# Auto-format file
+.clang-format
+
