@@ -1,4 +1,6 @@
+#include <string.h>
 #include "../s21_math.h"
+
 long double s21_ceil(double f) {
     int flag = 0;
     unsigned long input;
