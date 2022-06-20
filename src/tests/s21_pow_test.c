@@ -2,7 +2,7 @@
 
 START_TEST(test_pos_1) {
     double num = 134.5;
-    double p = 10.;
+    double p = 1.4;
     // printf("%f %Lf\n", pow(num, p), s21_pow(num, p));
     ck_assert_ldouble_eq_tol(pow(num, p), s21_pow(num, p), TEST_EPS);
 } END_TEST
