@@ -3,7 +3,8 @@
 .idea
 .vimrc
 .gdbinit
-.DS_Store
+.gdb_history
+
 # Prerequisites
 *.d
 
@@ -42,8 +43,7 @@ obj
 *.i*86
 *.x86_64
 *.hex
-test_s21_math
-coverage_s21_math
+test_main
 
 # Debug files
 *.dSYM/
@@ -67,3 +67,6 @@ coverage_info
 *.info
 
 .*.swp
+
+# Specific MacOS files
+.DS_store
