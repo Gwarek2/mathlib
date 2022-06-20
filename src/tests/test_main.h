@@ -5,6 +5,7 @@
 #include <check.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../s21_math.h"
 
@@ -13,4 +14,4 @@
 Suite *suite_s21_abs(void);
 Suite *suite_s21_ceil(void);
 
-#endif // TEST
+#endif  // TEST
