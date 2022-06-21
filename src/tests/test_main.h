@@ -24,6 +24,7 @@ Suite *suite_s21_sqrt(void);
 Suite *suite_s21_asin(void);
 Suite *suite_s21_fabs(void);
 Suite *suite_s21_trunc(void);
+Suite *suite_s21_sin(void);
 
 
 #endif  // TEST
