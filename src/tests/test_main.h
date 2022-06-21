@@ -7,7 +7,6 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "../s21_math.h"
 
@@ -22,5 +21,6 @@ Suite *suite_s21_log(void);
 Suite *suite_s21_pow(void);
 Suite *suite_s21_sqrt(void);
 Suite *suite_s21_asin(void);
+Suite *suite_s21_cos(void);
 
 #endif  // TEST

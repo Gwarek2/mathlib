@@ -11,7 +11,7 @@ long double s21_asin_x_0_05(double x) {
 
     do {
         divisor *= i - 1;
-        numerator *= x*x*(i-2);
+        numerator *= x * x * (i - 2);
         div_result = numerator / (divisor * i);
         result += div_result;
         i += 2;
@@ -33,7 +33,7 @@ long double s21_asin(double x) {
         if (x < 0.5) {
             result = s21_asin_x_0_05(x);
         } else {
-            result = S21_PI/2 - 2*s21_asin_x_0_05(s21_sqrt((1-x)/2));
+            result = S21_PI / 2 - 2 * s21_asin_x_0_05(s21_sqrt((1 - x) / 2));
         }
         result *= sign;
     } else {
@@ -41,4 +41,3 @@ long double s21_asin(double x) {
     }
     return result;
 }
-
