@@ -48,6 +48,11 @@ START_TEST(test_cos_big_mantissa) {
     ck_assert_ldouble_eq_tol(cos(x), s21_cos(x), TEST_EPS);
 }
 END_TEST
+START_TEST(test_cos_max_dbl) {
+    double x = DBL_MAX;
+    ck_assert_ldouble_eq_tol(cos(x), s21_cos(x), TEST_EPS);
+}
+END_TEST
 
 START_TEST(test_cos_eps_positive) {
     double x = 1 + cos_EPS;
@@ -84,6 +89,7 @@ Suite *suite_s21_cos(void) {
     tcase_add_test(tc, test_cos_inf);
     tcase_add_test(tc, test_cos_nan);
     tcase_add_test(tc, test_cos_minus_inf);
+    tcase_add_test(tc, test_cos_max_dbl);
     suite_add_tcase(s, tc);
     return s;
 }

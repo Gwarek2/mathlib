@@ -1,10 +1,10 @@
 /**
  * Implementation of exp function from math lib.
  * Uses Tailor series for calculation and aproximation of result
-**/
+ **/
 
-#include <math.h>
 #include "../s21_math.h"
+#include <math.h>
 
 static const long double EXP_EPS = 1e-100;
 

@@ -3,7 +3,8 @@ long double _factorial(double num);
 long double s21_cos(double num) {
     long double result = 0;
     if (!(is_inf(num) || is_nan(num))) {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
+
             result += s21_pow(-1, i) * s21_pow(num, 2 * i) / _factorial(2 * i);
         }
     } else {

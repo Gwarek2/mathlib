@@ -22,5 +22,6 @@ Suite *suite_s21_pow(void);
 Suite *suite_s21_sqrt(void);
 Suite *suite_s21_asin(void);
 Suite *suite_s21_cos(void);
+/* Suite *suite_s21_acos(void); */
 
 #endif  // TEST
