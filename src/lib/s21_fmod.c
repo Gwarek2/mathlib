@@ -1,4 +1,4 @@
-#include "../s21_math.h"
+#include "s21_math.h"
 
 long double s21_fmod(double x, double y) {
     long double result = S21_NAN;

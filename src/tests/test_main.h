@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../s21_math.h"
+#include "s21_math.h"
 
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
 #define TEST_EPS 1e-6l

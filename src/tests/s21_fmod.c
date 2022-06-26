@@ -18,6 +18,12 @@ START_TEST(test_neg2) {
     ck_assert_ldouble_eq_tol(fmod(x, y), s21_fmod(x, y), TEST_EPS);
 } END_TEST
 
+START_TEST(test_neg_two) {
+    double x = -10.1;
+    double y = -3.;
+    ck_assert_double_eq_tol(fmod(x, y), s21_fmod(x, y), TEST_EPS);
+}
+
 START_TEST(test_nul) {
     double x = 5345346.34523;
     double y = 0;
@@ -79,6 +85,7 @@ Suite *suite_s21_fmod(void) {
     tcase_add_test(tc, test_pos);
     tcase_add_test(tc, test_neg);
     tcase_add_test(tc, test_neg2);
+    tcase_add_test(tc, test_neg_two);
     tcase_add_test(tc, test_nul);
     tcase_add_test(tc, test_nul2);
     tcase_add_test(tc, test_nul3);

@@ -1,8 +1,7 @@
 /**
  * Implementation of sqrt function from math library.
 **/
-#include "../s21_math.h"
-#include <math.h>
+#include "s21_math.h"
 
 static const long double SQRT_EPS = 1e-10l;
 

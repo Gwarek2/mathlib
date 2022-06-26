@@ -1,6 +1,7 @@
 # Compiler and its flags
 CC              := gcc
 FLAGS           := -Wall -Werror -Wextra -std=c11 -g #-fsanitize=address
+INC_DIRS        := -I.
 TEST_FLAGS      := -lcheck -lm -lpthread
 ifeq ($(shell uname -s),Linux)
 	TEST_FLAGS  += -lrt -lsubunit
@@ -20,7 +21,7 @@ COV_OBJ_DIR     := $(COV_BUILD_DIR)
 # Src files
 LIB_SRCS        := $(LIB_DIR)/%.c
 LIB_HEADER      := s21_math.h
-TEST_SRCS       := $(TESTS_DIR)/*.c
+TEST_SRCS       := $(wildcard $(TESTS_DIR)/*.c)
 
 # Objects and executables files
 LIB_OBJS        := $(patsubst %.c,$(OBJ_DIR)/%.o,$(shell find $(LIB_DIR) -name "*.c"))
@@ -36,10 +37,10 @@ COV_INFO        := $(COV_DIR)/s21_math.info
 all: test gcov_report
 
 test: $(TEST_SRCS) $(LIB_STATIC)
-	$(CC) $(FLAGS) $^ $(TEST_FLAGS) -o $(TEST_EXEC)
+	$(CC) $(FLAGS) $(INC_DIRS) $^ $(TEST_FLAGS) -o $(TEST_EXEC)
 
 gcov_report: $(TEST_SRCS) $(COV_OBJS)
-	$(CC) $(FLAGS) --coverage $^ $(TEST_FLAGS) -o $(COV_EXEC)
+	$(CC) $(FLAGS) $(INC_DIRS) --coverage $^ $(TEST_FLAGS) -o $(COV_EXEC)
 	@-./$(COV_EXEC)
 	@gcov -ucn $(COV_EXEC) --object-directory=$(COV_BUILD_DIR)
 	@lcov -q -c -d $(COV_BUILD_DIR) --output-file $(COV_INFO) --exclude "tests/*"
@@ -52,12 +53,12 @@ $(LIB_STATIC): $(LIB_OBJS)
 # Compile object files for static lib
 $(LIB_OBJ_DIR)/%.o: $(LIB_SRCS) $(LIB_HEADER)
 	@mkdir -p $(LIB_OBJ_DIR)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(INC_DIRS) -c $< -o $@
 
 # Compile object files for coverage report
 $(COV_OBJ_DIR)/%.o: $(LIB_SRCS) $(LIB_HEADER)
 	@mkdir -p $(COV_OBJ_DIR)
-	@$(CC) $(FLAGS) --coverage -c $< -o $@
+	@$(CC) $(FLAGS) $(INC_DIRS) --coverage -c $< -o $@
 
 # Setup cpplint and cppcheck on .c files
 static_analysis:
@@ -67,4 +68,5 @@ static_analysis:
 	-cppcheck --enable=all --suppress=missingIncludeSystem $(ALL_C)
 
 clean:
-	@-rm -rf $(OBJ_DIR) $(LIB_STATIC) $(TEST_EXEC) $(COV_DIR) *.dSYM *.gcda *.gcno *.gcov
+	@-rm -rf $(OBJ_DIR) $(LIB_STATIC) $(TEST_EXEC) $(COV_DIR)\
+		     *.dSYM *.gcda *.gcno *.gcov

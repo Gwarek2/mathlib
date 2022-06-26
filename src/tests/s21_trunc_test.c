@@ -1,7 +1,7 @@
 #include "test_main.h"
 
 START_TEST(test_pos_real) {
-    double x = 123.231;
+    double x = 3.0 / 2.0;
     ck_assert_ldouble_eq_tol(trunc(x), s21_trunc(x), TEST_EPS);
 } END_TEST
 
@@ -26,7 +26,7 @@ START_TEST(test_pos_fract) {
 } END_TEST
 
 START_TEST(test_neg_fract) {
-    double x = -6.19573e-10;
+    double x = -6.19573e-1;
     ck_assert_ldouble_eq_tol(trunc(x), s21_trunc(x), TEST_EPS);
 } END_TEST
 

@@ -2,8 +2,7 @@
  * Implementation of log function from math library
  * Uses Newton-Raphson method for calculation and approximation of result
 **/
-#include <math.h>
-#include "../s21_math.h"
+#include "s21_math.h"
 
 long double s21_log(double x) {
     long double res = 1;
