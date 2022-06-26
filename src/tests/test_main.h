@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../s21_math.h"
+#include "s21_math.h"
 
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
 #define TEST_EPS 1e-6l
@@ -26,6 +26,7 @@ Suite *suite_s21_fabs(void);
 Suite *suite_s21_trunc(void);
 Suite *suite_s21_sin(void);
 Suite *suite_s21_fmod(void);
+Suite *suite_s21_acos(void);
 
 
 #endif  // TEST

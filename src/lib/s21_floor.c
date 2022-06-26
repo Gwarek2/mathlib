@@ -1,5 +1,5 @@
 #include <string.h>
-#include "../s21_math.h"
+#include "s21_math.h"
 
 long double s21_floor(double x) {
     unsigned long input;

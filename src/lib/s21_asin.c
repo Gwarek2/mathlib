@@ -1,4 +1,4 @@
-#include "../s21_math.h"
+#include "s21_math.h"
 
 static const double ASIN_EPS = 1e-16l;
 

@@ -3,8 +3,7 @@
  * Uses Tailor series for calculation and aproximation of result
 **/
 
-#include <math.h>
-#include "../s21_math.h"
+#include "s21_math.h"
 
 static const long double EXP_EPS = 1e-100;
 
@@ -20,7 +19,7 @@ long double s21_exp(double x) {
         long double fact = 1;
         long double part = 1;
         long double i = 2;
-        while (fabsl(part) > EXP_EPS) {
+        while (s21_fabs(part) > EXP_EPS) {
             part = exponent / fact;
             res += part;
             exponent *= num;
