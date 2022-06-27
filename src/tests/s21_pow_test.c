@@ -53,15 +53,15 @@ START_TEST(test_fractional_pow_neg_num) {
 START_TEST(test_zero_power) {
     double nums[6] = { 1.12, -34.45, NAN, -NAN, INFINITY, -INFINITY };
     double p = 0;
-    for (size_t i = 0; i < 6; i++)
-        ck_assert_ldouble_eq_tol(pow(nums[i], p), s21_pow(nums[i], p), TEST_EPS);
+    int i = _i;
+    ck_assert_ldouble_eq_tol(pow(nums[i], p), s21_pow(nums[i], p), TEST_EPS);
 } END_TEST
 
 START_TEST(test_one_num) {
     double num = 1.0;
     double p[7] = { 1, 1.23, -1.23, NAN, -NAN, INFINITY, -INFINITY };
-    for (size_t i = 0; i < 7; i++)
-        ck_assert_ldouble_eq_tol(pow(num, p[i]), s21_pow(num, p[i]), TEST_EPS);
+    int i = _i;
+    ck_assert_ldouble_eq_tol(pow(num, p[i]), s21_pow(num, p[i]), TEST_EPS);
 } END_TEST
 
 START_TEST(test_one_power) {
@@ -73,35 +73,36 @@ START_TEST(test_one_power) {
 START_TEST(test_nan_power) {
     double nums[6] = { 1.12, -34.45, NAN, -NAN, INFINITY, -INFINITY };
     double p = NAN;
-    for (size_t i = 0; i < 6; i++)
-        ck_assert_ldouble_nan(s21_pow(nums[i], p));
+    int i = _i;
+    ck_assert_ldouble_nan(s21_pow(nums[i], p));
 } END_TEST
 
 START_TEST(test_nan_num) {
     double num = NAN;
     double p[8] = { 1, -1, -11.1, 11.1, INFINITY, -INFINITY, NAN, -NAN };
-    for (size_t i = 0; i < 8; i++)
-        ck_assert_ldouble_nan(s21_pow(num, p[i]));
+    int i = _i;
+    ck_assert_ldouble_nan(s21_pow(num, p[i]));
 } END_TEST
 
 START_TEST(test_neg_nan_power) {
     double nums[6] = { 1.12, -34.45, NAN, -NAN, INFINITY, -INFINITY };
     double p = -NAN;
-    for (size_t i = 0; i < 6; i++)
-        ck_assert_ldouble_nan(s21_pow(nums[i], p));
+    int i = _i;
+    ck_assert_ldouble_nan(s21_pow(nums[i], p));
 } END_TEST
 
 START_TEST(test_neg_nan_num) {
     double num = -NAN;
     double p[8] = { 1, -1, -11.1, 11.1, INFINITY, -INFINITY, NAN, -NAN };
-    for (size_t i = 0; i < 8; i++)
-        ck_assert_ldouble_nan(s21_pow(num, p[i]));
+    int i = _i;
+    ck_assert_ldouble_nan(s21_pow(num, p[i]));
 } END_TEST
 
 START_TEST(test_zero_neg_pow) {
     double num = 0;
     double p = -12;
     ck_assert_ldouble_infinite(s21_pow(num, p));
+    // ck_assert_ldouble_infinite(pow(num, p));
 }
 
 START_TEST(test_zero_pos_pow) {
@@ -118,9 +119,8 @@ START_TEST(test_minus_one_inf_pow) {
 START_TEST(test_fract_num_neg_inf_pow) {
     double num = 0.123;
     double p = -INFINITY;
-    long double res = s21_pow(num, p);
-    ck_assert_ldouble_infinite(res);
-    ck_assert_ldouble_gt(res, 0);
+    ck_assert_ldouble_infinite(s21_pow(num, p));
+    // ck_assert_ldouble_infinite(pow(num, p));
 } END_TEST
 
 START_TEST(test_fract_num_pos_inf_pow) {
@@ -144,9 +144,8 @@ START_TEST(test_fract_num_pos_pow) {
 START_TEST(test_num_inf_pow) {
     double num = 13;
     double p = INFINITY;
-    long double res = s21_pow(num, p);
-    ck_assert_ldouble_infinite(res);
-    ck_assert_ldouble_gt(res, 0);
+    ck_assert_ldouble_infinite(s21_pow(num, p));
+    // ck_assert_ldouble_infinite(pow(num, p));
 } END_TEST
 
 START_TEST(test_pos_inf_neg_pow) {
@@ -159,12 +158,14 @@ START_TEST(test_neg_inf_pos_pow) {
     double num = -INFINITY;
     double p = 12;
     ck_assert_ldouble_infinite(s21_pow(num, p));
+    // ck_assert_ldouble_infinite(pow(num, p));
 } END_TEST
 
 START_TEST(test_neg_inf_pos_odd_pow) {
     double num = -INFINITY;
     double p = 13;
     ck_assert_ldouble_infinite(s21_pow(num, p));
+    // ck_assert_ldouble_infinite(pow(num, p));
 } END_TEST
 
 START_TEST(test_neg_inf_neg_pow) {
@@ -177,6 +178,7 @@ START_TEST(test_pos_inf_pos_pow) {
     double num = INFINITY;
     double p = 12;
     ck_assert_ldouble_infinite(s21_pow(num, p));
+    // ck_assert_ldouble_infinite(pow(num, p));
 } END_TEST
 
 Suite *suite_s21_pow(void) {
@@ -191,13 +193,13 @@ Suite *suite_s21_pow(void) {
     tcase_add_test(tc, test_neg_num_fract_pow);
     tcase_add_test(tc, test_fractional_pow);
     tcase_add_test(tc, test_fractional_pow_neg_num);
-    tcase_add_test(tc, test_zero_power);
-    tcase_add_test(tc, test_one_num);
+    tcase_add_loop_test(tc, test_zero_power, 0, 6);
+    tcase_add_loop_test(tc, test_one_num, 0, 7);
     tcase_add_test(tc, test_one_power);
-    tcase_add_test(tc, test_nan_power);
-    tcase_add_test(tc, test_nan_num);
-    tcase_add_test(tc, test_neg_nan_power);
-    tcase_add_test(tc, test_neg_nan_num);
+    tcase_add_loop_test(tc, test_nan_power, 0, 6);
+    tcase_add_loop_test(tc, test_nan_num, 0, 8);
+    tcase_add_loop_test(tc, test_neg_nan_power, 0, 6);
+    tcase_add_loop_test(tc, test_neg_nan_num, 0, 8);
     tcase_add_test(tc, test_zero_neg_pow);
     tcase_add_test(tc, test_zero_pos_pow);
     tcase_add_test(tc, test_minus_one_inf_pow);
