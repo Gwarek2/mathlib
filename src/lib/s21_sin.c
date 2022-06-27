@@ -3,14 +3,7 @@
 static const double SIN_EPS = 1e-6l;
 
 long double s21_sin(double x) {
-    int sign;
-    if (x >= 0) {
-        sign = 1;
-    } else {
-        x *= -1;
-        sign = -1;
-    }
-    if (s21_fabs(x) >= SIN_EPS) x = s21_fmod(x, S21_PI);
+    x = s21_fmod(x, 2 * S21_PI);
 
     int i = 1;
     double numerator = x;
@@ -26,6 +19,6 @@ long double s21_sin(double x) {
         i++;
     } while (s21_fabs(div_result) > SIN_EPS);
 
-    return result * sign;
+    return result;
 }
 
