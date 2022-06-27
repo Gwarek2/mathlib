@@ -38,6 +38,7 @@ all: test gcov_report
 
 test: $(TEST_SRCS) $(LIB_STATIC)
 	$(CC) $(FLAGS) $(INC_DIRS) $^ $(TEST_FLAGS) -o $(TEST_EXEC)
+	./$(TEST_EXEC)
 
 gcov_report: $(TEST_SRCS) $(COV_OBJS)
 	$(CC) $(FLAGS) $(INC_DIRS) --coverage $^ $(TEST_FLAGS) -o $(COV_EXEC)

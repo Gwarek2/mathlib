@@ -1,27 +1,23 @@
-#include "../s21_math.h"
-long double _factorial(double num);
-long double s21_cos(double num) {
-    long double result = 0;
-    if (!(is_inf(num) || is_nan(num))) {
-        num = s21_fmod(num, S21_PI);
-        for (int i = 0; i < 50; i++) {
+#include "s21_math.h"
 
-            result += s21_pow(-1, i) * s21_pow(num, 2 * i) / _factorial(2 * i);
+static const double COS_EPS = 1e-6l;
+
+long double s21_cos(double x) {
+    double result = 0;
+    int sign = 1;
+    if (!is_inf(x) && !is_nan(x)) {
+        if (s21_fabs(x) >= COS_EPS) x = s21_fmod(x, 2 * S21_PI);
+        double i = 1;
+        double step = 1;
+        result = 1;
+        while (s21_fabs(step) > COS_EPS) {
+            step *= -x * x / ((2 * i - 1) * (2 * i));
+            result += step;
+            i++;
         }
     } else {
-        return S21_NAN;
+        result = S21_NAN;
     }
-    return result;
+    return result * sign;
 }
 
-long double _factorial(double num) {
-    long double result;
-    if (num < 0)
-        result = 0;
-    if (num == 0)
-        result = 1;
-    else
-        result = num * _factorial(num - 1);
-
-    return result;
-}

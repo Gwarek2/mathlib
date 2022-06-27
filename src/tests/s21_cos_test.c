@@ -1,5 +1,4 @@
 #include "test_main.h"
-static const double cos_EPS = 1e-16l;
 
 START_TEST(test_cos_positive) {
     double x = 0.4;
@@ -33,13 +32,13 @@ END_TEST
 
 START_TEST(test_cos_huge_positive) {
     double x = 598987986;
-    ck_assert_ldouble_nan(s21_cos(x));
+    ck_assert_ldouble_eq_tol(cos(x), s21_cos(x), TEST_EPS);
 }
 END_TEST
 
 START_TEST(test_cos_huge_negative) {
     double x = -5938409234;
-    ck_assert_ldouble_nan(s21_cos(x));
+    ck_assert_ldouble_eq_tol(cos(x), s21_cos(x), TEST_EPS);
 }
 END_TEST
 
@@ -48,29 +47,49 @@ START_TEST(test_cos_big_mantissa) {
     ck_assert_ldouble_eq_tol(cos(x), s21_cos(x), TEST_EPS);
 }
 END_TEST
-START_TEST(test_cos_max_dbl) {
-    double x = DBL_MAX;
+START_TEST(test_cos_two_pi) {
+    double x = S21_PI;
     ck_assert_ldouble_eq_tol(cos(x), s21_cos(x), TEST_EPS);
 }
 END_TEST
 
 START_TEST(test_cos_eps_positive) {
-    double x = 1 + cos_EPS;
+    double x = 1 + TEST_EPS;
     ck_assert_ldouble_eq_tol(cos(x), s21_cos(x), TEST_EPS);
 }
 END_TEST
 
 START_TEST(test_cos_eps_negative) {
-    double x = -1 - cos_EPS;
+    double x = -1 - TEST_EPS;
     ck_assert_ldouble_eq_tol(cos(x), s21_cos(x), TEST_EPS);
 }
 END_TEST
+
 START_TEST(test_cos_inf) { ck_assert_ldouble_nan(s21_cos(INFINITY)); }
 END_TEST
+
 START_TEST(test_cos_nan) { ck_assert_ldouble_nan(s21_cos(NAN)); }
 END_TEST
+
 START_TEST(test_cos_minus_inf) { ck_assert_ldouble_nan(s21_cos(-INFINITY)); }
 END_TEST
+
+
+START_TEST(test_cos_fractional_pi_values) {
+    int i = _i;
+    if (i != 0) {
+        ck_assert_ldouble_eq_tol(cos(S21_PI / i), s21_cos(S21_PI / i), TEST_EPS);
+    } else {
+        ck_assert_ldouble_nan(s21_cos(S21_PI / i));
+    }
+} END_TEST
+
+START_TEST(test_cos_whole_pi_values) {
+    int i = _i;
+    ck_assert_ldouble_eq_tol(cos(S21_PI * i), s21_cos(S21_PI * i), TEST_EPS);
+} END_TEST
+
+
 Suite *suite_s21_cos(void) {
     Suite *s = suite_create("s21_cos");
     TCase *tc = tcase_create("core");
@@ -89,7 +108,10 @@ Suite *suite_s21_cos(void) {
     tcase_add_test(tc, test_cos_inf);
     tcase_add_test(tc, test_cos_nan);
     tcase_add_test(tc, test_cos_minus_inf);
-    tcase_add_test(tc, test_cos_max_dbl);
+    tcase_add_test(tc, test_cos_two_pi);
+    tcase_add_loop_test(tc, test_cos_fractional_pi_values, -10, 10);
+    tcase_add_loop_test(tc, test_cos_whole_pi_values, -10, 10);
     suite_add_tcase(s, tc);
     return s;
 }
+
