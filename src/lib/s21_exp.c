@@ -15,15 +15,12 @@ long double s21_exp(double x) {
         res = x < 0 ? 0 : S21_INF;
     } else {
         long double num = x;
-        long double exponent = num;
         long double fact = 1;
-        long double part = 1;
-        long double i = 2;
-        while (s21_fabs(part) > EXP_EPS) {
-            part = exponent / fact;
-            res += part;
-            exponent *= num;
-            fact *= i++;
+        long double step = 1;
+        while (s21_fabs(step) > EXP_EPS) {
+            step *= num / fact;
+            res += step;
+            fact++;
         }
     }
     return res;
