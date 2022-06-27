@@ -11,12 +11,12 @@ START_TEST(test_sin_small_negative) {
 } END_TEST
 
 START_TEST(test_sin_huge_positive) {
-    double x = 400000.23;
+    double x = 923456789;
     ck_assert_ldouble_eq_tol(sin(x), s21_sin(x), TEST_EPS);
 } END_TEST
 
 START_TEST(test_sin_huge_negative) {
-    double x = -400000.23;
+    double x = -923456789;
     ck_assert_ldouble_eq_tol(sin(x), s21_sin(x), TEST_EPS);
 } END_TEST
 
@@ -36,15 +36,17 @@ START_TEST(test_sin_inf) {
 } END_TEST
 
 START_TEST(test_sin_fractional_pi_values) {
-    for (int i = -10; i <= 10 && i != 0; i++) {
-       ck_assert_ldouble_eq_tol(sin(S21_PI / i), s21_sin(S21_PI / i), TEST_EPS);
+    int i = _i;
+    if (i != 0) {
+        ck_assert_ldouble_eq_tol(sin(S21_PI / i), s21_sin(S21_PI / i), TEST_EPS);
+    } else {
+        ck_assert_ldouble_nan(s21_sin(S21_PI / i));
     }
 } END_TEST
 
 START_TEST(test_sin_whole_pi_values) {
-    for (int i = -10; i <= 10; i++) {
-        ck_assert_ldouble_eq_tol(sin(S21_PI * i), s21_sin(S21_PI * i), TEST_EPS);
-    }
+    int i = _i;
+    ck_assert_ldouble_eq_tol(sin(S21_PI * i), s21_sin(S21_PI * i), TEST_EPS);
 } END_TEST
 
 START_TEST(test_sin_big_mantissa) {
@@ -63,8 +65,8 @@ Suite *suite_s21_sin(void) {
     tcase_add_test(tc, test_sin_zero);
     tcase_add_test(tc, test_sin_nan);
     tcase_add_test(tc, test_sin_inf);
-    tcase_add_test(tc, test_sin_fractional_pi_values);
-    tcase_add_test(tc, test_sin_whole_pi_values);
+    tcase_add_loop_test(tc, test_sin_fractional_pi_values, -10, 10);
+    tcase_add_loop_test(tc, test_sin_whole_pi_values, -10, 10);
     tcase_add_test(tc, test_sin_big_mantissa);
 
     suite_add_tcase(s, tc);
