@@ -33,7 +33,7 @@ START_TEST(test_nul) {
 START_TEST(test_nul2) {
     double x = 0;
     double y = 4353.64564;
-    ck_assert_ldouble_nan(s21_fmod(x, y));
+    ck_assert_double_eq_tol(fmod(x, y), s21_fmod(x, y), TEST_EPS);
 } END_TEST
 
 START_TEST(test_nul3) {
@@ -78,6 +78,12 @@ START_TEST(test_inf4) {
     ck_assert_ldouble_nan(s21_fmod(x, y));
 } END_TEST
 
+START_TEST(test_inf5) {
+    double x = 0;
+    double y = S21_INF;
+    ck_assert_ldouble_eq_tol(fmod(x, y), s21_fmod(x, y), TEST_EPS);
+} END_TEST
+
 Suite *suite_s21_fmod(void) {
     Suite *s = suite_create("s21_fmod");
     TCase *tc = tcase_create("core");
@@ -95,6 +101,7 @@ Suite *suite_s21_fmod(void) {
     tcase_add_test(tc, test_inf2);
     tcase_add_test(tc, test_inf3);
     tcase_add_test(tc, test_inf4);
+    tcase_add_test(tc, test_inf5);
     suite_add_tcase(s, tc);
     return s;
 }
