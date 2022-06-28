@@ -29,5 +29,7 @@ Suite *suite_s21_fmod(void);
 Suite *suite_s21_acos(void);
 Suite *suite_s21_cos(void);
 Suite *suite_s21_tan(void);
+Suite *suite_s21_atan(void);
+
 
 #endif  // TEST

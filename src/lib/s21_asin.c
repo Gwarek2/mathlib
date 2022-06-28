@@ -33,7 +33,7 @@ long double s21_asin(double x) {
         if (x < 0.5) {
             result = s21_asin_x_0_05(x);
         } else {
-            result = S21_PI / 2 - 2 * s21_asin_x_0_05(s21_sqrt((1 - x) / 2));
+            result = S21_PI / 2 - 2 * s21_asin_x_0_05(s21_pow((1 - x) / 2, 0.5));
         }
         result *= sign;
     } else {
