@@ -40,11 +40,6 @@ START_TEST(test_zero) {
     ck_assert_ldouble_eq_tol(sqrt(x), s21_sqrt(x), TEST_EPS);
 } END_TEST
 
-START_TEST(test_neg_zero) {
-    double x = -0.;
-    ck_assert_ldouble_eq_tol(sqrt(x), s21_sqrt(x), TEST_EPS);
-} END_TEST
-
 START_TEST(test_neg_int) {
     double x = -121.;
     ck_assert_ldouble_nan(s21_sqrt(x));
@@ -82,7 +77,6 @@ Suite *suite_s21_sqrt(void) {
     tcase_add_test(tc, test_pos_real_3);
     tcase_add_test(tc, test_pos_real_4);
     tcase_add_test(tc, test_zero);
-    tcase_add_test(tc, test_neg_zero);
     tcase_add_test(tc, test_neg_int);
     tcase_add_test(tc, test_neg_real);
     tcase_add_test(tc, test_nan);
