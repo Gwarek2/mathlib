@@ -3,10 +3,10 @@
 **/
 #include "s21_math.h"
 
-static const long double SQRT_EPS = 1e-10l;
+static const long double SQRT_EPS = 1e-20l;
 
 long double s21_sqrt(double x) {
-    long double res = 1;
+    long double res = 0;
     if (x < 0) {
         res = -S21_NAN;
     } else if (is_nan(x)) {
@@ -14,8 +14,7 @@ long double s21_sqrt(double x) {
     } else if (is_inf(x) || x <= SQRT_EPS) {
         res = x;
     } else {
-        long double num = x;
-        res = s21_exp(s21_log(num) / 2);
+        res = s21_exp(s21_log(x) / 2.);
     }
     return res;
 }
