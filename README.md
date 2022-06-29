@@ -64,11 +64,12 @@ The functions of the math.h library must be implemented (only those directly des
 ### Build static library 
 `cd src`  
 `make s21_math.a`  
+
 ### Run unit tests
 To run tests you need to have installed Check framework for C. Instructions are **[here](https://libcheck.github.io/check/web/install.html)**.  
 `cd src`  
 `make test`  
-`./main_test`  
+
 ### Generate coverage report  
 It is necessary to have have **gcov** and **lcov** utilities installed.  
 `cd src`  
