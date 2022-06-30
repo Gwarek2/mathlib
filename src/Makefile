@@ -19,50 +19,50 @@ LIB_DIR         := lib/
 TESTS_DIR       := tests/
 COV_DIR         := coverage_info/
 OBJ_DIR         := obj/
-LIB_OBJ_DIR	    := $(OBJ_DIR)$(LIB_DIR)
+LIB_OBJ_DIR     := $(OBJ_DIR)$(LIB_DIR)
 COV_OBJ_DIR     := $(COV_DIR)$(OBJ_DIR)
 
 LIB_HEADER      := s21_math.h
 LIB_SRCS        := $(addprefix $(LIB_DIR),s21_abs.c \
-				                          s21_acos.c \
-										  s21_asin.c \
-										  s21_atan.c \
-										  s21_ceil.c \
-										  s21_cos.c \
-										  s21_exp.c \
-										  s21_fabs.c \
-										  s21_floor.c \
-										  s21_fmod.c \
-										  s21_log.c \
-										  s21_pow.c \
-										  s21_sin.c \
-										  s21_sqrt.c \
-										  s21_tan.c \
-										  s21_trunc.c)
+                                          s21_acos.c \
+                                          s21_asin.c \
+                                          s21_atan.c \
+                                          s21_ceil.c \
+                                          s21_cos.c \
+                                          s21_exp.c \
+                                          s21_fabs.c \
+                                          s21_floor.c \
+                                          s21_fmod.c \
+                                          s21_log.c \
+                                          s21_pow.c \
+                                          s21_sin.c \
+                                          s21_sqrt.c \
+                                          s21_tan.c \
+                                          s21_trunc.c)
 TEST_SRCS       := $(addprefix $(TESTS_DIR),s21_abs_test.c \
-				                            s21_acos_test.c \
-											s21_asin_test.c \
-											s21_atan_test.c \
-											s21_ceil_test.c \
-											s21_cos_test.c \
-											s21_exp_test.c \
-											s21_fabs_test.c \
-											s21_floor_test.c \
-											s21_fmod_test.c \
-											s21_log_test.c \
-											s21_pow_test.c \
-											s21_sin_test.c \
-											s21_sqrt_test.c \
-											s21_tan_test.c \
-											s21_trunc_test.c \
-											test_main.c)
+                                            s21_acos_test.c \
+                                            s21_asin_test.c \
+                                            s21_atan_test.c \
+                                            s21_ceil_test.c \
+                                            s21_cos_test.c \
+                                            s21_exp_test.c \
+                                            s21_fabs_test.c \
+                                            s21_floor_test.c \
+                                            s21_fmod_test.c \
+                                            s21_log_test.c \
+                                            s21_pow_test.c \
+                                            s21_sin_test.c \
+                                            s21_sqrt_test.c \
+                                            s21_tan_test.c \
+                                            s21_trunc_test.c \
+                                            test_main.c)
 
 LIB_OBJS        := $(patsubst %.c,\
                               $(OBJ_DIR)%.o,\
-							  $(LIB_SRCS))
+                              $(LIB_SRCS))
 COV_OBJS        := $(patsubst %.c,\
                               $(COV_OBJ_DIR)%.o,\
-							  $(LIB_SRCS))
+                              $(LIB_SRCS))
 
 LIB_STATIC      := s21_math.a
 TEST_EXEC       := test_main
